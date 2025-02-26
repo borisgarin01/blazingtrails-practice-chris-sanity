@@ -1,0 +1,19 @@
+﻿@page "/"
+@using BlazorWasm1.Models
+
+<PageTitle>Blazing Trails</PageTitle>
+
+@if (trails is null)
+{
+    <p>Loading trails...</p>
+}
+else
+{
+    <TrailDetails Trail="selectedTrail" />
+    <div class="grid">
+        @foreach (var trail in trails)
+        {
+            <TrailCard OnSelected="HandleTrailSelected" Trail="@trail" />
+        }
+    </div>
+}

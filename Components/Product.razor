@@ -1,0 +1,36 @@
+﻿@using System.ComponentModel.DataAnnotations
+@code {
+    [Parameter, EditorRequired]
+    public string Name { get; set; }
+
+    [Parameter]
+    public string Description { get; set; }
+
+    [Parameter]
+    [Range(0.0f, 10.0f)]
+    public float? Score { get; set; }
+
+    [Parameter]
+    public DateTime? ReleaseDate { get; set; }
+}
+
+<div class="jumbotron">
+    <h1 class="display-4">@Name</h1>
+    @if (!string.IsNullOrWhiteSpace(Description))
+    {
+        <p class="lead">@Description</p>
+        <hr class="my-4">
+    }
+    @if (Score.HasValue)
+    {
+        <p>@Score.Value</p>
+        <hr class="my-4">
+    }
+    @if (ReleaseDate.HasValue)
+    {
+        <p class="lead">
+            @ReleaseDate.Value
+        </p>
+        <hr class="my-4">
+    }
+</div>
