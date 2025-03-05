@@ -1,4 +1,4 @@
-﻿namespace BlazorWasm1.Models;
+﻿namespace Domain;
 
 public sealed record Trail
 {

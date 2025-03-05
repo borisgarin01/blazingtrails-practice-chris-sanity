@@ -1,4 +1,4 @@
-﻿using BlazorWasm1.Models;
+﻿using Domain;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorWasm1.Components;
