@@ -25,9 +25,5 @@ public partial class Home
         }
     }
 
-    private void HandleTrailSelected(Trail trail)
-    {
-        selectedTrail = trail;
-        StateHasChanged();
-    }
+    private void HandleTrailSelected(Trail trail) => selectedTrail = trail;
 }
