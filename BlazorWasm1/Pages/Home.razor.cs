@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using BlazorWasm1.Models;
+using Domain;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;

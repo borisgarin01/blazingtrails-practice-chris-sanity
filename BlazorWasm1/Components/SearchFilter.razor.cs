@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BlazorWasm1.Pages;
+using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 
 namespace BlazorWasm1.Components;

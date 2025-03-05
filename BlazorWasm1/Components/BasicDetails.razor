@@ -1,0 +1,47 @@
+﻿@using BlazorWasm1.Models
+@code {
+    [Parameter, EditorRequired] public Trail Trail { get; set; } = default!;
+}
+
+<FormSection Title="Basic Details"
+             HelpText="This information is used to identify the trail and can be searched to help hikers find it">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="trailName"
+                       class="font-weight-bold text-secondary">Name</label>
+                <InputText @bind-Value="Trail.Name"
+                           class="form-control" id="trailName" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="trailDescription" class="font-weight-bol text-secondary">
+                    Description
+                </label>
+                <InputTextArea @bind-Value="Trail.Description" rows="6" class="form-control" id="trailDescription" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="trailLocation" class="font-weight-bold text-secondary">Location</label>
+                <InputText @bind-Value="Trail.Location" class="form-control" id="trailLocation" />
+            </div>
+        </div>
+    </div>
+</FormSection>
+
+<FormSection Title="Difficulty" HelpText="Help other hikers out by telling them the length of the trail is how long it might take them.">
+    <FormFieldSet Width="col-3">
+        <label for="trailLength" class="font-weight-bold text-secondary">
+            Length (km)
+        </label>
+        <InputNumber @bind-Value="Trail.Length" class="form-control" id="trailLength" />
+    </FormFieldSet>
+</FormSection>

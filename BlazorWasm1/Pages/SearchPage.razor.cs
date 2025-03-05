@@ -1,4 +1,5 @@
-﻿using Domain;
+﻿using BlazorWasm1.Models;
+using Domain;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace BlazorWasm1.Components;
+namespace BlazorWasm1.Pages;
 
 public partial class SearchPage
 {
