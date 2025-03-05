@@ -1,6 +1,14 @@
 ﻿<div class="filters">
     <label for="maxLength">Max Length</label>
-    <input id="maxLength" type="number" class="form-control" @bind="maxLength" />
+    <input id="maxLength"
+           type="number"
+           class="form-control"
+           @bind="MaxLength" />
+    <label for="maxTime">Max Time (hours)</label>
+    <input id="maxTime"
+           type="number"
+           class="form-control"
+           @bind="MaxTime" />
     <button class="btn btn-outline-primary"
             @onclick="FilterSearchResults">
         Filter

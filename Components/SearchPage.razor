@@ -1,5 +1,4 @@
 ﻿@page "/search/{SearchTerm}"
-@page "/search/{SearchTerm}/maxlength/{MaxLength:int}"
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
@@ -12,7 +11,10 @@
 </nav>
 
 <h3 class="mt-5 mb-4">Search results for @SearchTerm</h3>
-<SearchFilter SearchTerm="@SearchTerm" />
+
+<SearchFilter SearchTerm="@SearchTerm"
+              MaxLength="@MaxLength"
+              MaxTime="@MaxTime" />
 
 @if (searchResults is null)
 {

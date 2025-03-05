@@ -12,8 +12,11 @@ public partial class SearchPage
     [Parameter]
     public string SearchTerm { get; set; } = default!;
 
-    [Parameter]
+    [Parameter, SupplyParameterFromQuery]
     public int? MaxLength { get; set; }
+
+    [Parameter, SupplyParameterFromQuery]
+    public int? MaxTime { get; set; }
 
     private IEnumerable<Trail>? searchResults;
     private Trail? selectedTrail;
@@ -34,19 +37,35 @@ public partial class SearchPage
         }
     }
 
-    protected override void OnParametersSet()
-    {
-        if (cachedSearchResults.Any() && MaxLength.HasValue)
-        {
-            searchResults = cachedSearchResults
-                .Where(x => x.Length <= MaxLength.Value);
-        }
-        else if (cachedSearchResults.Any() && MaxLength is null)
-        {
-            searchResults = cachedSearchResults;
-        }
-    }
+    protected override void OnParametersSet() => UpdateFilters();
 
     private void HandleTrailSelected(Trail trail) =>
         selectedTrail = trail;
+
+    private void UpdateFilters()
+    {
+        var filters = new List<Func<Trail, bool>>();
+
+        if (MaxLength is not null && MaxLength > 0)
+        {
+            filters.Add(x => x.Length <= MaxLength);
+        }
+
+        if (MaxTime is not null && MaxTime > 0)
+        {
+            filters.Add(x => x.TimeInMinutes <= MaxTime * 60);
+        }
+
+        if (filters.Any())
+        {
+            searchResults = cachedSearchResults.Where(trail => filters.All(filter => filter(trail)));
+        }
+
+        else
+        {
+            searchResults = cachedSearchResults;
+        }
+
+        Console.WriteLine(filters.Count);
+    }
 }

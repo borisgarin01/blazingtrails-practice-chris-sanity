@@ -5,6 +5,7 @@ namespace BlazorWasm1.Components;
 public partial class SearchFilter
 {
     private int maxLength;
+    private int maxTime;
 
     [Parameter, EditorRequired]
     public string SearchTerm { get; set; } = default!;
@@ -12,9 +13,30 @@ public partial class SearchFilter
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
-    private void FilterSearchResults() => NavigationManager.NavigateTo($"/search/{SearchTerm}/maxlength/{maxLength}");
+    [Parameter]
+    public int? MaxLength { get; set; }
 
-    private void ClearSearchFilter()
+    [Parameter]
+    public int? MaxTime { get; set; }
+
+    protected override void OnInitialized()
+    {
+        maxLength = MaxLength ?? 0;
+        maxTime = MaxTime ?? 0;
+    }
+
+    public void FilterSearchResults()
+    {
+        var uriWithQueryString = NavigationManager.GetUriWithQueryParameters(new Dictionary<string, object?>()
+        {
+            [nameof(SearchPage.MaxLength)] = MaxLength == 0 ? null : MaxLength,
+            [nameof(SearchPage.MaxTime)] = MaxTime == 0 ? null : MaxTime
+        });
+
+        NavigationManager.NavigateTo(uriWithQueryString);
+    }
+
+    public void ClearSearchFilter()
     {
         maxLength = 0;
         NavigationManager.NavigateTo($"/search/{SearchTerm}");
