@@ -2,3 +2,4 @@
 *.sln
 Domain/obj
 Domain/bin
+Shared/obj
