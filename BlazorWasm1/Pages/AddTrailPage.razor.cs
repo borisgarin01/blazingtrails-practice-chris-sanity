@@ -6,7 +6,7 @@ namespace BlazorWasm1.Pages;
 
 public partial class AddTrailPage
 {
-    private Trail trail = new Trail();
+    private TrailDto trail = new TrailDto();
 
     private async Task SubmitForm()
     {

@@ -1,5 +1,6 @@
 ﻿@page "/add-trail"
 @using Domain
+@using Shared;
 
 <PageTitle>Add Trail - Blazing Trails</PageTitle>
 
@@ -13,13 +14,14 @@
 <h3 class="mt-5 mb-4">Add a trail</h3>
 
 <EditForm Model="trail" OnValidSubmit="SubmitForm">
-    <BasicDetails Trail="trail"/>
+    <Blazored.FluentValidation.FluentValidationValidator />
+    <BasicDetails Trail="trail" />
     <div class="mt-4 mb-5">
         <div class="row">
             <div class="offset-4 col-8 text-right">
                 <button class="btn btn-outline-secondary"
                         type="button"
-                        @onclick="@(()=>trail=new Models.Trail())">
+                        @onclick="@(()=>trail=new TrailDto())">
                     Reset
                 </button>
                 <button class="btn btn-primary" type="submit">Submit</button>
